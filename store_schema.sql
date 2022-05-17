@@ -88,6 +88,4 @@ INSERT INTO product VALUES
 
 
 
--- reference lab 4 to delete users in schema, cascade
-
   
