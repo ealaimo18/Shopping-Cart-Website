@@ -1,0 +1,35 @@
+<html>
+
+  <head>
+    <title> product </title> 
+  </head>
+
+  <body class="body_home">
+    <form action= "{{url_for('home')}}">
+        <input class ="home_button" type="submit" class="home" name="home" value="home">
+    </form>
+    <h1 class="header">{{product_info['product_name']}}</h1>
+    <link href="/static/style.css" rel="stylesheet" type="text/css" />
+    {% if session["user_id"] == null: %}
+      <p class="search_error">{{add_error}}</p>
+    {% endif %}
+    <div class="product_info">
+        {{product_info['product_name']}} <br>
+        price = {{product_info['product_price']}}
+        <form action= "/category/{{category_name}}/{{product_info['product_id']}}" method="POST">
+            <input class ="quantity_input" type="number" min="1" max="{{product_info['inventory'] }}" name="p_qty" placeholder="qty" required>
+            <input class ="addtocart_button" type="submit" class="addtocart" value="add to cart">     
+            <input type="hidden" name="p_id" value="{{product_info['product_id']}}">
+        </form>
+    
+    
+    </div>
+    <img class ="product_img" src="/static/images/{{product_info['product_id']}}.jpg" alt="{{ product_info['product_name'] }}" width="300" height="300">
+    
+
+
+  </body>
+
+
+
+</html>

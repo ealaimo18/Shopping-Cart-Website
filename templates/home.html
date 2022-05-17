@@ -1,0 +1,53 @@
+<html>
+
+  <head>
+    <title> ManMart </title> 
+  </head>
+  <link href="/static/style.css" rel="stylesheet" type="text/css" />
+  <body class="body_home">
+    
+    <div class="dropdown">
+    <button class="dropbtn">Menu</button>
+      <div class="dropdown-content">
+        {% for category in categories: %} 
+          <a href="/category/{{ category['category_name'] }}"> {{category["category_name"]}} </a>
+		    {% endfor %}   
+      </div>
+    </div>
+
+    {% if session["name"] == null: %}
+      <form action= "{{url_for('login')}}">
+        <input class ="login_button" type="submit" class="login" name="login" value="login">
+      </form>
+    {% endif %}
+
+ 
+    {% if session["name"] != null: %}
+       <form action= "{{url_for('logout')}}">
+          <input class ="login_button" type="submit" class="login" name="logout" value="logout">
+      </form>
+    {% endif %}
+    
+    <form action= "{{url_for('cart')}}">
+      <input class ="cart_button" type="submit" class="cart" name="cart" value="cart">
+    </form>
+
+    <form action="/search" method="POST">
+			<input class="search_input" type="text" name="field_search" placeholder="search"><br>
+      <input class="search_button" type="submit" name="search" value="search">
+		</form>
+
+    <h1 class="header">  ManMart </h1>
+
+      <phome class="p">
+          {% for product in products: %} 
+           <img class ="product_img" src="/static/images/{{product['product_id']}}.jpg" alt="{{ product['product_name'] }}" width="100" height="100">
+          <a href="/category/{{ product["product_category_name"] }}/{{ product["product_id"] }}"> {{product["product_name"] }} </a><br>
+		    {% endfor %}
+      </p>
+    
+  </body>
+
+  
+
+</html>

@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <title> orderhistory </title> 
+  </head>
+  <link href="/static/style.css" rel="stylesheet" type="text/css" />  
+  <h1 class="header"> {{session["name"]}}'s order history  </h1>
+  <form action= "{{url_for('home')}}">
+    <input class ="home_button" type="submit" class="home" name="home" value="home">
+  </form>
+  <body class="body_home">
+    {% for order in orders %}
+      <li>date: {{order['order_date']}}</li>
+       <a href="/order_history/{{ order['order_id'] }}">order number # {{order['order_id']}} </a><br>
+		{% endfor %}
+  </body>
+
+</html>

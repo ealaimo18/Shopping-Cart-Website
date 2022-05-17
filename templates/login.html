@@ -1,0 +1,17 @@
+<html>
+	<head>
+		<title> Login </title>
+	</head>
+  <link href="/static/style.css" rel="stylesheet" type="text/css" />
+	<body class="body_home">
+		<h1 class= "header">Login</h1>
+    {{ message }} <br> 
+		<form action="/login" method="POST">
+			<input class ="login_input" type="text" name="field_username" placeholder="username"><br>
+			<input class ="login_input" type="text" name="field_password" placeholder="password"><br>
+      <br>
+      <input type="submit" class="login" name="login" value="login">
+		</form>
+    <a href="/addnewuser"> Register New User</a>
+	</body>
+</html>

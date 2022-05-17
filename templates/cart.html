@@ -1,0 +1,59 @@
+<html>
+
+  <head>
+    <title> cart </title> 
+  </head>
+  <link href="/static/style.css" rel="stylesheet" type="text/css" />
+    {% if session["name"] == null: %}
+      <h1 class="header"> cart </h1>
+      <p class="search_error">{{cart_error}}</p>
+    {% endif %}
+    {% if session["name"] != null: %}
+       <h1 class="header"> {{session["name"]}}'s cart  </h1>
+    {% endif %}
+  <body>
+     <form action= "{{url_for('home')}}">
+        <input class ="home_button" type="submit" class="home" name="home" value="home">
+    </form>
+  </body>
+  {% if session["name"] == null: %}
+      <form action= "{{url_for('login')}}">
+        <input class ="login_button" type="submit" class="login" name="login" value="login">
+      </form>
+  {% endif %}
+  {% if session["name"] != null: %}
+       <form action= "{{url_for('logout')}}">
+          <input class ="login_button" type="submit" class="login" name="logout" value="logout">
+      </form>
+       <div class="orders"><a href="/order_history">order history</a></div>
+    <body class="search_body">
+      {% for i in range (0, cart_info|length): %} 
+        <div class="cart_container">
+          <div class="cart_items">
+            <img src="/static/images/{{ cart_info[i]['product_id'] }}.jpg" alt="{{ cart_info[i]['product_name']}}" width="75" height="75">
+            <p class="cart_align" >{{ cart_info[i]["product_name"] }} <br>
+             price: ${{ cart_info[i]["product_price"] }}
+             <input type="hidden" name="cart_pid" value="{{ cart_info[i]['product_id'] }}">
+              <form action='/remove' method="post">
+                <input type="submit" name="remove" value="remove"> 
+                <input type="hidden" name="cart_pid" value="{{ cart_info[i]['product_id'] }}">
+              </form>
+             <form method="post">
+               <label for="field_quantity">quantity:</label>
+               <input class="cart_qty" type="number" min="0" max="{{ cart_info[i]['inventory'] }}"
+                      name="field_quantity" value="{{ qty[i] }}">
+             </form>
+            </p>
+          </div>
+        </div>
+      <br>
+		  {% endfor %}
+    </body>
+    <p class="total">total: {{sum}} </p>
+    <br>
+  	<form action="/checkout" method="POST">
+      <input type="submit" class="checkout_button" name="checkout" value="checkout">
+		</form>
+   {% endif %}  
+  </body>
+</html>

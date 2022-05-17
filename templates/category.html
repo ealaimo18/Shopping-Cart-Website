@@ -1,0 +1,25 @@
+<html>
+
+  <head>
+    <title> category </title> 
+  </head>
+  <form action= "{{url_for('home')}}">
+        <input class ="home_button" type="submit" class="home" name="home" value="home">
+  </form>
+
+  <body class="body_home">
+    <h1 class="header"> {{category_name}}</h1>
+    <link href="/static/style.css" rel="stylesheet" type="text/css" />
+    {% for product in products: %} 
+      <div class="cart_container">  
+        <a href="/category/{{ category_name }}/{{ product["product_id"] }}"> {{product["product_name"] }} </a> 
+      </div>
+     <br>
+		{% endfor %}
+
+    
+  </body>
+
+  
+
+</html>

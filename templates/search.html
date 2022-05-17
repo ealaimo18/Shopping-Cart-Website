@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title> search </title> 
+  </head>
+  <link href="/static/style.css" rel="stylesheet" type="text/css" />  
+  <h1 class="header"> results for: {{r_search}} </h1>
+  <form action= "{{url_for('home')}}">
+    <input class ="home_button" type="submit" class="home" name="home" value="home">
+  </form>
+  <body class="search_body">
+      <p class="search_error"> {{search_error}}</p>
+      {% for result in results: %} 
+        <div class="cart_container_search">
+           <img src="/static/images/{{ result['product_id'] }}.jpg" alt="{{ result['product_name']}}" width="75" height="75">
+          <a href="/category/{{ result["product_category_name"] }}/{{ result["product_id"] }}"> {{result["product_name"] }} </a>
+          </div>
+        <br>
+		{% endfor %}
+  </body>
+
+
+
+</html>

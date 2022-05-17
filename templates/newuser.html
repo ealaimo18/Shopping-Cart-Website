@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Register New User</title>
+    </head>
+   <link href="/static/style.css" rel="stylesheet" type="text/css" />
+    <body class="body_home">
+        {% if session["name"] == null: %}
+          <form action= "{{url_for('login')}}">
+            <input class ="login_button" type="submit" class="login" name="login" value="login">
+          </form>
+        {% endif %}
+        <form action= "{{url_for('home')}}">
+          <input class ="home_button" type="submit" class="home" name="home" value="home">
+        </form>
+      <br>
+      <br>
+      <br>
+      <br>
+      <form action="/addnewuser" method="POST">
+        name<br>
+        <input type="text" name="field_name" ><br>
+        username <br>
+        <input type="text" name="field_username" ><br>
+        password<br>
+        <input type="text" name="field_password" ><br>
+        <br>
+        <input type="submit" name="register">
+      </form>
+    </body>
+</html>

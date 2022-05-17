@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title> order details </title> 
+  </head>
+  <link href="/static/style.css" rel="stylesheet" type="text/css" />  
+  <h1 class="header"> order# {{order_id}} </h1>
+  <form action= "{{url_for('home')}}">
+    <input class ="home_button" type="submit" class="home" name="home" value="home">
+  </form>
+  <body class="body_home">
+    {% for i in range (0, order_items|length): %} 
+      <li>{{ order_items[i]['product_name'] }}</li>
+      <li>price: ${{ order_items[i]['product_price'] }}</li>
+
+		{% endfor %}
+  </body>
+
+</html>
